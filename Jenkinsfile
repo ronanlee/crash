@@ -3,7 +3,10 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        sh 'mvn clean package'
+        sh '''def mvn_version = \'M3\'
+withEnv( ["PATH+MAVEN=${tool mvn_version}/bin"] ) {
+  sh "mvn clean package"
+}'''
       }
     }
   }
